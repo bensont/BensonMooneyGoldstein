@@ -6,9 +6,11 @@ class Store{
 public:
 	Store();
 	void ReturnTool(Tool *t);
-	Tool BorrowTool();
+	Tool* BorrowTool();
     void PrintStore();
     void CleanUp();
+    int NumberOfTools();
 private:
+    int totalRevenue_;
 	std::vector<Tool*> tools;
 };

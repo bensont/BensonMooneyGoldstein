@@ -13,6 +13,23 @@ void Store::CleanUp(){
 	tools.clear();
 }
 
+int Store::NumberOfTools(){
+    return tools.size();
+}
+
+Tool* Store::BorrowTool(){
+    int inx = 0;
+    Tool* tool;
+    
+    //find a random tool somehow
+    //add price to total revenue
+    //return the random tool
+    
+    Tool* tool = tools.at(inx);
+    tools.erase(inx);
+    return tool;
+}
+
 void Store::PrintStore(){
 	for(std::vector<Tool*>::iterator i=tools.begin(); i!=tools.end(); ++i){
 		(*i)->PrintTool();

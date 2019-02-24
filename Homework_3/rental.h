@@ -5,7 +5,7 @@
 class Rental{
 public:
     Rental(std::vector<Tool*> intools,int date);
-    int getDueDate();
+    int getDueDate(); //get the due date
 private:
     int dueDate;
     std::vector<Tool*> rentedTools;
