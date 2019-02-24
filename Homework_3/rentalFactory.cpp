@@ -1,6 +1,6 @@
 #include "rentalFactory.h"
 
-Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int toolMin,int toolMax){
+Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int toolMin,int toolMax, int curDate){
     //max number of tools to be rented
     int maxGen
     //ask store if there are enough tools

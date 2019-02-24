@@ -13,6 +13,22 @@ void BuildStore(Store* t,int max,std::string cat){
 
 }
 
+void DayCycle(Store* t,std::vector<Customer> c,int curDate){
+    //popque
+    Customer = popdfsadc
+    if(Customer.canRent()){
+        Customer.purchaseTools(t,curDate);
+    }
+}
+
+void NightCycle(Store* t, std::vector<Customer> c,int curDate){
+    for(Customer cust: c){
+        std::vector<Rental*> = cust.returnTools(curDate);
+        //process the return
+    }
+    
+}
+
 int main(){
 	//Create main time
     TimeCounter time(35);
@@ -40,11 +56,12 @@ int main(){
     //day night cycle
     while(!time.IsDone()){
         if(time.IsDay()){
-            //tool rental
+            //If list is empty build list
+            //for each person in list as them to rent
             time.AdvanceDay();
         }
         else{
-            //tool return
+            NightCycle(store,customers,time.get_day());
             time.AdvanceDay();
         }
     }
