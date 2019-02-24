@@ -9,6 +9,10 @@ void Store::ReturnTool(Tool* t){
 	tools.push_back(t);
 }
 
+void Store::CleanUp(){
+	tools.clear();
+}
+
 void Store::PrintStore(){
 	for(std::vector<Tool*>::iterator i=tools.begin(); i!=tools.end(); ++i){
 		(*i)->PrintTool();

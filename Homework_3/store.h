@@ -8,6 +8,7 @@ public:
 	void ReturnTool(Tool *t);
 	Tool BorrowTool();
     void PrintStore();
+    void CleanUp();
 private:
 	std::vector<Tool*> tools;
 };

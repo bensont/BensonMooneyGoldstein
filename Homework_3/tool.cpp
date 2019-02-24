@@ -11,6 +11,16 @@ Tool::Tool(int pc, std::string cat){
 	category = cat;
 }
 
+Tool::~Tool(){
+	//default destructor
+	price = -1;
+	//category = NULL;
+}
+
+Tool* Tool::Create(int pc, std::string cat){
+	return new Tool(pc,cat);
+}
+
 int Tool::GetPrice(){
 	return price;
 }
