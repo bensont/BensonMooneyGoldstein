@@ -8,7 +8,7 @@ private:
     void AdvanceDay();
     bool IsDone();
 public:
-    int _maxDay
-    int _currentDay;
-    bool _isDay;
+    int maxDay_;
+    int currentDay_;
+    bool isDay_;
 };

@@ -21,6 +21,7 @@ void TimeCounter::AdvanceDay(){
         _isDay = false;
     }else{
         _currendDay++;
+        _isDay = true;
     }
 }
 

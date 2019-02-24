@@ -1,6 +1,7 @@
 #include "tool.h"
 #include "store.h"
 #include "customers.h"
+#include "timecounter.h"
 #include <iostream>
 
 void BuildStore(Store* t,int max,std::string cat){
@@ -13,9 +14,12 @@ void BuildStore(Store* t,int max,std::string cat){
 }
 
 int main(){
-	
+	//Create main time
+    TimeCounter time(35);
+    
 	//start by building a store
 	Store store;
+    
 	//now we give the store a bunch of tools
 	BuildStore(&store,5,"painting");
 	BuildStore(&store,7,"concrete");
@@ -29,8 +33,21 @@ int main(){
 
 	//have the factory fill the customer vector
 	
-
+    //testing the store
 	store.PrintStore();
+    //testing the customers
+    
+    //day night cycle
+    while(!time.IsDone()){
+        if(time.IsDay()){
+            //tool rental
+            time.AdvanceDay();
+        }
+        else{
+            //tool return
+            time.AdvanceDay();
+        }
+    }
 
 	//clean up step
 	store.CleanUp();
