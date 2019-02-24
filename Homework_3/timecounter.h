@@ -1,13 +1,15 @@
 #pragma once
 
 class TimeCounter{
-private:
+public:
     TimeCounter();
     TimeCounter(int mxday);
     bool IsDay();
     void AdvanceDay();
     bool IsDone();
-public:
+    int get_day();
+    
+private:
     int maxDay_;
     int currentDay_;
     bool isDay_;

@@ -6,8 +6,8 @@
 class Customer{
 public:
 	Customer();
-	void purchaseTools();
-	void returnTools();
+	void purchaseTools(Store* s, int cur_date);
+	void returnTools(int date);
 	bool canRent();
 private:
 	std::string name_;
@@ -15,8 +15,9 @@ private:
 	int n_max_;
 	int t_min_; // tool min/max rented
 	int t_max_;
-	int max_tools = 3; // Always default of a max of 3 rented tools
-	std::vector<Rental> rentals_;
+	int max_tools_ = 3; // Always default of a max of 3 rented tools
+	int num_rentals_ = 0;
+	std::vector<Rental*> rentals_;
 };
 
 class Casual: public Customer {

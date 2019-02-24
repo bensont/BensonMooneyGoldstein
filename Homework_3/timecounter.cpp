@@ -32,3 +32,7 @@ bool TimeCounter::IsDone(){
         return false;
     }
 }
+
+int TimeCounter::get_day() {
+  return currentDay_;
+}
