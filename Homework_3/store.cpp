@@ -5,6 +5,10 @@ Store::Store(){
 
 }
 
+void Store::displayRevenue(){
+    std::cout << "Earned " << std::to_string(totalRevenue_) << " dollars "<< std::endl;
+}
+
 void Store::ReturnTool(Tool* t){
 	tools.push_back(t);
 }
@@ -27,6 +31,8 @@ Tool* Store::BorrowTool(){
     
     curtool = tools.at(inx);
     tools.erase(tools.begin()+inx);
+    //add price
+    totalRevenue_ += curtool->GetPrice();
     return curtool;
 }
 

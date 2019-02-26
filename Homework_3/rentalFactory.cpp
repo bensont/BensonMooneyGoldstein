@@ -1,4 +1,5 @@
 #include "rentalFactory.h"
+#include <iostream>
 
 Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int toolMin,int toolMax, int curDate){
     //max number of tools to be rented
@@ -14,9 +15,21 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
     }else{
         maxGen = NumTools;
     }
-    
+    std::cout << "on day " <<std::to_string(curDate) << ", " <<std::to_string(maxGen) << " ";
     //guess random number of tools
-    int ToolsRented = rand() % maxGen; //this is totally wrong
+    int ToolsRented;
+    if(maxGen-toolMin > 0){
+        ToolsRented = (rand() % (maxGen - toolMin +1)); //find the difference
+    }else {
+        ToolsRented = 0;
+    }
+    ToolsRented += toolMin;
+    std::cout << std::to_string(toolMin) << " " << std::to_string(ToolsRented) << std::endl;
+    if(ToolsRented > NumTools){
+        //std::cout << std::to_string(ToolsRented) << std::endl;
+        return NULL;
+    }
+    //std::cout << std::to_string(ToolsRented) << std::endl;
     
     //build vector for rental object
     std::vector<Tool*> rentedtools;
@@ -27,5 +40,5 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
     //decide how long should be rented for
     int numDays = rand() % nightMax; //also totally wrong
     
-    return new Rental(rentedtools,numDays);
+    return new Rental(rentedtools,numDays+curDate);
 }

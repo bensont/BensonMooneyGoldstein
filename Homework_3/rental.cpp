@@ -10,8 +10,10 @@ int Rental::getDueDate(){
 }
 
 void Rental::display(){
-    for(int i = 0;i<rentedTools.size();i++){
-        rentedTools.at(i)->PrintTool();
+    if(!isEmpty()){
+        for(int i = 0;i<rentedTools.size();i++){
+            rentedTools.at(i)->PrintTool();
+        }
     }
 }
 

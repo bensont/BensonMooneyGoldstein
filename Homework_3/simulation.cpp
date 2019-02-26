@@ -5,21 +5,22 @@
 #include "customerFactory.h"
 #include <iostream>
 #include <queue>
+#include <time.h>
 
-void BuildStore(Store* t,int max,std::string cat){
+void BuildStore(Store* t,int prc,std::string cat){
 	for(int i = 0;i<4;i++){
-		Tool* testTool = Tool::Create(max,cat+std::to_string(i+1));
+		Tool* testTool = Tool::Create(prc,cat+std::to_string(i+1));
 		t->ReturnTool(testTool);
 	}
 	
 
 }
 
-void DayCycle(Store* t,std::queue<Customer*> c,int curDate){
+void DayCycle(Store* t,std::queue<Customer*>* c,int curDate){
     Customer* cust;
-    while(!c.empty()){
-        cust = c.front();
-        c.pop();
+    while(!c->empty()){
+        cust = c->front();
+        c->pop();
         if(cust->canRent()){
             cust->purchaseTools(t,curDate);
         }
@@ -36,6 +37,9 @@ void NightCycle(Store* t, std::vector<Customer> c,int curDate){
  */
 
 int main(){
+    //seed random
+    srand(time(NULL));
+    
 	//Create main time
     TimeCounter time(35);
     
@@ -85,7 +89,7 @@ int main(){
                     custqueue.push(customers.at(i));
                 }
             }
-            DayCycle(&store,custqueue,time.get_day());
+            DayCycle(&store,&custqueue,time.get_day());
             time.AdvanceDay();
         }
         else{
@@ -99,7 +103,13 @@ int main(){
         customers.at(i)->display();
     }
     
+    //display pricing
+    store.displayRevenue();
+    std::cout<<store.NumberOfTools()<<std::endl;
+    store.PrintStore();
+    //time.get_day();
 	//clean up step
+    //std::cout<<time.get_day()<<std::endl;
 	store.CleanUp();
     //clean each customer up
     customers.clear();

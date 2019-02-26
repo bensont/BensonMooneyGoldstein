@@ -10,6 +10,7 @@ public:
     void PrintStore();
     void CleanUp();
     int NumberOfTools();
+    void displayRevenue();
 private:
     int totalRevenue_;
 	std::vector<Tool*> tools;

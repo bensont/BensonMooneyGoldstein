@@ -12,7 +12,7 @@ Business::Business(std::string name) :Customer(name,3,3,7,7,"business"){
 Regular::Regular(std::string name):Customer(name,1,3,3,5,"regular") {
 }
 
-Customer::Customer(std::string name, int n_min, int n_max, int t_min, int t_max,std::string type) {
+Customer::Customer(std::string name, int t_min, int t_max, int n_min, int n_max,std::string type) {
   name_ = name;
   n_min_ = n_min;
   n_max_ = n_max;
@@ -28,8 +28,13 @@ Customer::~Customer(){
 }
 
 void Customer::purchaseTools(Store* s, int cur_date) {
-  Rental* cur_rental = rentalFactory::rentTools(s,n_min_,n_max_,t_min_,max_tools_-num_rentals_, cur_date);
-    if(!cur_rental->isEmpty()){
+    int numRentals;
+    numRentals = max_tools_-num_rentals_;
+    if(numRentals > t_max_){
+        numRentals = t_max_;
+    }
+  Rental* cur_rental = rentalFactory::rentTools(s,n_min_,n_max_,t_min_,numRentals, cur_date);
+    if(cur_rental != NULL && !cur_rental->isEmpty()){
         rentals_.push_back(cur_rental);
         num_rentals_ += cur_rental->numTools();
     }
