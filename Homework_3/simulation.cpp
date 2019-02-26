@@ -3,6 +3,7 @@
 #include "customers.h"
 #include "timecounter.h"
 #include <iostream>
+#include <queue>
 
 void BuildStore(Store* t,int max,std::string cat){
 	for(int i = 0;i<4;i++){
@@ -13,9 +14,10 @@ void BuildStore(Store* t,int max,std::string cat){
 
 }
 
+/*
 void DayCycle(Store* t,std::vector<Customer> c,int curDate){
     //popque
-    Customer = popdfsadc
+    //Customer = popdfsadc
     if(Customer.canRent()){
         Customer.purchaseTools(t,curDate);
     }
@@ -28,6 +30,7 @@ void NightCycle(Store* t, std::vector<Customer> c,int curDate){
     }
     
 }
+ */
 
 int main(){
 	//Create main time
@@ -45,6 +48,9 @@ int main(){
 	
 	//create a bunch of customers
 	std::vector<Customer> customers;
+    //vector to hold customers to process
+    std::queue<Customer> custqueue;
+    
 	//create a customer factory
 
 	//have the factory fill the customer vector
@@ -54,6 +60,7 @@ int main(){
     //testing the customers
     
     //day night cycle
+    /*
     while(!time.IsDone()){
         if(time.IsDay()){
             //If list is empty build list
@@ -67,6 +74,7 @@ int main(){
     }
 
 	//clean up step
+    */
 	store.CleanUp();
 
 	return 0;

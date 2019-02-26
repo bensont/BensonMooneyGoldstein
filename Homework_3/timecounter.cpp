@@ -1,32 +1,32 @@
-#include "TimeCounter.h"
+#include "timecounter.h"
 
 TimeCounter::TimeCounter(){
-    _maxDay = 0;
-    _currendDay = 0;
-    _isDay = false;
+    maxDay_ = 0;
+    currentDay_ = 0;
+    isDay_ = false;
 }
 
 TimeCounter::TimeCounter(int mxday){
-    _maxDay = mxday
-    _currendDay = 1;
-    _isDay = true;
+    maxDay_ = mxday;
+    currentDay_ = 1;
+    isDay_ = true;
 }
 
-TimeCounter::_isDay(){
-    return _isDay;
+bool TimeCounter::IsDay(){
+    return isDay_;
 }
 
 void TimeCounter::AdvanceDay(){
-    if(_isDay){
-        _isDay = false;
+    if(isDay_){
+        isDay_ = false;
     }else{
-        _currendDay++;
-        _isDay = true;
+        currentDay_++;
+        isDay_ = true;
     }
 }
 
 bool TimeCounter::IsDone(){
-    if(_currendDay >= _maxDay){
+    if(currentDay_ >= maxDay_){
         return true;
     }else{
         return false;

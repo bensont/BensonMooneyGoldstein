@@ -19,15 +19,15 @@ int Store::NumberOfTools(){
 
 Tool* Store::BorrowTool(){
     int inx = 0;
-    Tool* tool;
+    Tool* curtool;
     
     //find a random tool somehow
     //add price to total revenue
     //return the random tool
     
-    Tool* tool = tools.at(inx);
-    tools.erase(inx);
-    return tool;
+    curtool = tools.at(inx);
+    tools.erase(tools.begin()+inx);
+    return curtool;
 }
 
 void Store::PrintStore(){
