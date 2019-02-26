@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 #include "customers.h"
 
 Casual::Casual(std::string name): Customer(name,1,2,1,1){
@@ -19,6 +20,10 @@ Customer::Customer(std::string name, int n_min, int n_max, int t_min, int t_max)
   t_max_ = t_max;
     max_tools_ = 3;
     num_rentals_ = 0;
+}
+
+Customer::~Customer(){
+    rentals_.clear();
 }
 
 void Customer::purchaseTools(Store* s, int cur_date) {
@@ -44,4 +49,8 @@ bool Customer::canRent() {
     }else{
         return false;
     }
+}
+
+void Customer::display(){
+    std::cout << name_ <<std::endl;
 }

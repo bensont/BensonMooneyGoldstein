@@ -2,6 +2,7 @@
 #include "store.h"
 #include "customers.h"
 #include "timecounter.h"
+#include "customerFactory.h"
 #include <iostream>
 #include <queue>
 
@@ -47,17 +48,29 @@ int main(){
 	BuildStore(&store,4,"yardwork");
 	
 	//create a bunch of customers
-	std::vector<Customer> customers;
+	std::vector<Customer*> customers;
     //vector to hold customers to process
-    std::queue<Customer> custqueue;
+    std::queue<Customer*> custqueue;
     
-	//create a customer factory
-
+	//create the first 3 customers
+    
+    customers.push_back(CustomerFactory::createCasual("cust1"));
+    customers.push_back(CustomerFactory::createBusiness("cust2"));
+    customers.push_back(CustomerFactory::createRegular("cust3"));
+    
+    //fill the rest randomly
+    for(int i = 3;i<10;i++){
+        customers.push_back(CustomerFactory::createRandom("cust"+std::to_string(i+1)));
+    }
 	//have the factory fill the customer vector
 	
     //testing the store
 	store.PrintStore();
     //testing the customers
+    for(int i = 0; i<customers.size();i++){
+        //std::cout << "?"<< std::endl;
+        customers.at(i)->display();
+    }
     
     //day night cycle
     /*
@@ -76,6 +89,8 @@ int main(){
 	//clean up step
     */
 	store.CleanUp();
+    //clean each customer up
+    customers.clear();
 
 	return 0;
 }

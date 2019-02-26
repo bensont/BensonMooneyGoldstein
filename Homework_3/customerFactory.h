@@ -1,9 +1,10 @@
 #pragma once
 #include "customers.h"
 
-static class CustomerFactory{
-  customer* createCasual(std::string name);
-  customer* createBusiness(std::string name);
-  customer* createRegulaer(std::string name);
-  customer* createRandom(std::string name);
+class CustomerFactory{
+public:
+  static Customer* createCasual(std::string name);
+  static Customer* createBusiness(std::string name);
+  static Customer* createRegular(std::string name);
+  static Customer* createRandom(std::string name);
 };

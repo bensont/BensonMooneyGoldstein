@@ -3,13 +3,13 @@ CXXFLAGS = -Wall -g
 
 all: test
 
-test: tool.o simulation.o store.o customers.o rental.o timecounter.o rentalFactory.o
-	g++ -o test tool.o simulation.o store.o rental.o timecounter.o rentalFactory.o
+test: tool.o simulation.o store.o customers.o rental.o timecounter.o rentalFactory.o customerFactory.o
+	g++ -o test tool.o simulation.o store.o customers.o rental.o timecounter.o rentalFactory.o customerFactory.o
 
-tool.o: tool.cpp tool.h
+tool.o: tool.cpp
 	g++ -c tool.cpp
 
-simulation.o: simulation.cpp timecounter.o
+simulation.o: simulation.cpp timecounter.o customers.h customerFactory.h tool.h store.h
 	g++ -c simulation.cpp
 
 store.o: store.cpp tool.h
@@ -26,3 +26,6 @@ timecounter.o: timecounter.cpp
 
 rentalFactory.o: rentalFactory.cpp store.h
 	g++ -c rentalFactory.cpp
+
+customerFactory.o : customerFactory.cpp customers.o
+	g++ -c customerFactory.cpp
