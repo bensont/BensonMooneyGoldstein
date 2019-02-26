@@ -1,28 +1,27 @@
 #include <string>
 #include <vector>
 
-Casual::Casual(std::string name) {
-  name_ = name;
-  n_min_ = 1;
-  n_max_ = 2;
-  t_min_ = 1;
-  t_max_ = 1;
+Customer* Casual::Casual(std::string name) {
+  Customer* new_customer = new Customer(name,1,2,1,1);
+  return new_customer;
 }
 
-Casual::Business(std::string name) {
-  name_ = name;
-  n_min_ = 3;
-  n_max_ = 3;
-  t_min_ = 7;
-  t_max_ = 7;
+Business::Business(std::string name) {
+  Customer* new_customer = new Customer(name,3,3,7,7);
+  return new_customer;
 }
 
-Casual::Regular(std::string name) {
+Regular::Regular(std::string name) {
+  Customer* new_customer = new Customer(name,1,3,3,5);
+  return new_customer;
+}
+
+Customer::Customer(std::string name, int n_min, int n_max, int t_min, int t_max) {
   name_ = name;
-  n_min_ = 1;
-  n_max_ = 3;
-  t_min_ = 3;
-  t_max_ = 5;
+  n_min_ = n_min;
+  n_max_ = n_max;
+  t_min_ = t_min;
+  t_max_ = t_max;
 }
 
 void Customer::purchaseTools(Store* s, int cur_date) {

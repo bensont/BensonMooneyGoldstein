@@ -5,7 +5,7 @@
 
 class Customer{
 public:
-	Customer();
+	Customer(std::string name, int n_min, int n_max, int t_min, int t_max);
 	void purchaseTools(Store* s, int cur_date);
 	void returnTools(int date);
 	bool canRent();
