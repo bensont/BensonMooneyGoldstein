@@ -15,15 +15,17 @@ void BuildStore(Store* t,int max,std::string cat){
 
 }
 
-/*
-void DayCycle(Store* t,std::vector<Customer> c,int curDate){
-    //popque
-    //Customer = popdfsadc
-    if(Customer.canRent()){
-        Customer.purchaseTools(t,curDate);
+void DayCycle(Store* t,std::queue<Customer*> c,int curDate){
+    Customer* cust;
+    while(!c.empty()){
+        cust = c.front();
+        c.pop();
+        if(cust->canRent()){
+            cust->purchaseTools(t,curDate);
+        }
     }
 }
-
+/*
 void NightCycle(Store* t, std::vector<Customer> c,int curDate){
     for(Customer cust: c){
         std::vector<Rental*> = cust.returnTools(curDate);
@@ -73,21 +75,31 @@ int main(){
     }
     
     //day night cycle
-    /*
+    
     while(!time.IsDone()){
         if(time.IsDay()){
-            //If list is empty build list
-            //for each person in list as them to rent
+            int r;
+            for(int i = 0; i<customers.size();i++){
+                r = rand() % 3;
+                if(r == 0){
+                    custqueue.push(customers.at(i));
+                }
+            }
+            DayCycle(&store,custqueue,time.get_day());
             time.AdvanceDay();
         }
         else{
-            NightCycle(store,customers,time.get_day());
+            //NightCycle(store,customers,time.get_day());
             time.AdvanceDay();
         }
     }
 
+    for(int i = 0; i<customers.size();i++){
+        //std::cout << "?"<< std::endl;
+        customers.at(i)->display();
+    }
+    
 	//clean up step
-    */
 	store.CleanUp();
     //clean each customer up
     customers.clear();

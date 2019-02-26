@@ -33,7 +33,6 @@ Tool* Store::BorrowTool(){
 void Store::PrintStore(){
 	for(std::vector<Tool*>::iterator i=tools.begin(); i!=tools.end(); ++i){
 		(*i)->PrintTool();
-		std::cout << std::endl;
 	}
 }/*
 	for(std::vector<Tool*>::iterator i=tools.begin(); t=tools.end(); ++i){

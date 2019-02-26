@@ -30,5 +30,5 @@ void Tool::SetPrice(int x){
 }
 
 void Tool::PrintTool(){
-	std::cout << "Category: " << category << " Price: " << std::to_string(price);
+    std::cout << "Category: " << category << " Price: " << std::to_string(price) << std::endl;
 }
