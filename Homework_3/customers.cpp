@@ -72,7 +72,7 @@ void Customer::display_(){
     if(rentals_.size() != 0){
         
         for(int i=0;i<rentals_.size();i++){
-            std::cout << "Rental " << std::to_string(i+1) << std::endl;
+            std::cout << "Rental " << std::to_string(i+1) << " Due on day " << rentals_.at(i)->getDueDate() << std::endl;
             rentals_.at(i)->display();
         }
     }

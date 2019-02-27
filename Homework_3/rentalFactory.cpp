@@ -37,8 +37,15 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
     for(int i = 0; i < ToolsRented;i++){
         rentedtools.push_back(store->BorrowTool());
     }
-    //decide how long should be rented for
-    int numDays = rand() % nightMax; //also totally wrong
+    //decide how long should be rented for, copied logic from higher up
+    
+    int numDays;
+    if(nightMax - nightMin > 0){
+       numDays = rand() % (nightMax - nightMin+1);
+    }else{
+        numDays = 0;
+    }
+    numDays += nightMin;
     
     return new Rental(rentedtools,numDays+curDate);
 }
