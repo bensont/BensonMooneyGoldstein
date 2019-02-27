@@ -52,7 +52,7 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
 void rentalFactory::returnTools(Store* store, Rental* rent){
     //break open the rental object
     std::vector<Tool*> returnTools = rent->getTools();
-    std::cout << "here"<<std::to_string(returnTools.size()) <<std::endl;
+    std::cout << "Returned n tools: "<<std::to_string(returnTools.size()) <<std::endl;
     for(int i = 0; i< returnTools.size() ;i++){
         store->ReturnTool(returnTools.at(i));
     }
