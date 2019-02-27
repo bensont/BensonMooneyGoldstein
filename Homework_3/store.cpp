@@ -6,7 +6,7 @@ Store::Store(){
 }
 
 void Store::displayRevenue(){
-    std::cout << "Earned " << std::to_string(totalRevenue_) << " dollars "<< std::endl;
+    std::cout << std::to_string(totalRevenue_) << " dollars "<< std::endl;
 }
 
 void Store::ReturnTool(Tool* t){

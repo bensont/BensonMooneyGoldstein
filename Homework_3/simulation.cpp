@@ -59,7 +59,6 @@ int main(){
     std::queue<Customer*> custqueue;
     
 	//create the first 3 customers
-    
     customers.push_back(CustomerFactory::createCasual("cust1"));
     customers.push_back(CustomerFactory::createBusiness("cust2"));
     customers.push_back(CustomerFactory::createRegular("cust3"));
@@ -68,7 +67,6 @@ int main(){
     for(int i = 3;i<10;i++){
         customers.push_back(CustomerFactory::createRandom("cust"+std::to_string(i+1)));
     }
-	//have the factory fill the customer vector
 	
     //testing the store
 	store.PrintStore();
@@ -84,32 +82,37 @@ int main(){
         if(time.IsDay()){
             int r;
             for(int i = 0; i<customers.size();i++){
-                r = rand() % 3;
+                r = rand() % 3; //customers have a 1/3 chance of going to store
                 if(r == 0){
                     custqueue.push(customers.at(i));
                 }
             }
-            DayCycle(&store,&custqueue,time.get_day());
-            time.AdvanceDay();
+            DayCycle(&store,&custqueue,time.get_day()); //actually deal with customers at store
+            time.AdvanceDay(); //move to night of same day
         }
         else{
             //NightCycle(store,customers,time.get_day());
-            time.AdvanceDay();
+            time.AdvanceDay(); //move to day of following morning
         }
     }
 
+    //print out the customers stuff
     for(int i = 0; i<customers.size();i++){
         //std::cout << "?"<< std::endl;
         customers.at(i)->display();
     }
     
-    //display pricing
+    //display money earned
+    std::cout << "Over " << std::to_string(time.get_day()) << " days earned ";
     store.displayRevenue();
-    std::cout<<store.NumberOfTools()<<std::endl;
+    //Current number of store
+    //std::cout<<store.NumberOfTools()<<std::endl;
     store.PrintStore();
     //time.get_day();
 	//clean up step
     //std::cout<<time.get_day()<<std::endl;
+    
+    //Need to make sure things are cleaned up
 	store.CleanUp();
     //clean each customer up
     customers.clear();
