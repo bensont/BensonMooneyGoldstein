@@ -49,3 +49,10 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
     
     return new Rental(rentedtools,numDays+curDate);
 }
+
+void rentalFactory::returnTools(Store* store, Rental* rent){
+    //break open the rental object
+    while(!rent->isEmpty()){
+        store->ReturnTool(rent->getFirstTool());
+    }
+}

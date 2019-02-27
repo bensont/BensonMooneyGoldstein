@@ -6,10 +6,10 @@
 Casual::Casual(std::string name): Customer(name,1,2,1,1,"casual"){
 }
 
-Business::Business(std::string name) :Customer(name,3,3,7,7,"business"){
+Business::Business(std::string name): Customer(name,3,3,7,7,"business"){
 }
 
-Regular::Regular(std::string name):Customer(name,1,3,3,5,"regular") {
+Regular::Regular(std::string name): Customer(name,1,3,3,5,"regular") {
 }
 
 Customer::Customer(std::string name, int t_min, int t_max, int n_min, int n_max,std::string type) {
@@ -42,12 +42,12 @@ void Customer::purchaseTools(Store* s, int cur_date) {
     }
 }
 
-std::vector<Rental*> Customer::returnTools(int date) {
-  std::vector<Rental*> returns;
+std::vector<Rental*>* Customer::returnTools(int date) {
+  std::vector<Rental*>* returns;
   // check each rental in the customer's vector to see if it should be returned
   for (int i=0; i<rentals_.size(); i++) {
     if (rentals_[i]->getDueDate() == date) {
-      returns.push_back(rentals_[i]); //copy pointer
+      returns->push_back(rentals_[i]); //copy pointer
       rentals_.erase(rentals_.begin()+i); //remove raw pointer from the vector
     }
   }

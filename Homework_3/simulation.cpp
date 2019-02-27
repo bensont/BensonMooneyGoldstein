@@ -3,6 +3,7 @@
 #include "customers.h"
 #include "timecounter.h"
 #include "customerFactory.h"
+#include "rentalFactory.h"
 #include <iostream>
 #include <queue>
 #include <time.h>
@@ -26,15 +27,22 @@ void DayCycle(Store* t,std::queue<Customer*>* c,int curDate){
         }
     }
 }
-/*
-void NightCycle(Store* t, std::vector<Customer> c,int curDate){
-    for(Customer cust: c){
-        std::vector<Rental*> = cust.returnTools(curDate);
-        //process the return
+
+//The store (pointer), customer list (pointer for ease), and current date
+void NightCycle(Store* t, std::vector<Customer*>* c,int curDate){
+    std::vector<Rental*>* returnedTools;
+    for(int i = 0; i< c->size();i++){
+        returnedTools = c->at(i)->returnTools(curDate);
+        //make sure it isn't null
+        if(returnedTools != NULL){
+            for(int x = 0; x <returnedTools->size();x++){
+                rentalFactory::returnTools(t,returnedTools->at(x));
+            }
+        }
+        
     }
     
 }
- */
 
 int main(){
     //seed random
@@ -91,7 +99,8 @@ int main(){
             time.AdvanceDay(); //move to night of same day
         }
         else{
-            //NightCycle(store,customers,time.get_day());
+            //NightCycle(&store,&customers,time.get_day());
+            //since every customer needs to check every day, no queue
             time.AdvanceDay(); //move to day of following morning
         }
     }

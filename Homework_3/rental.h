@@ -9,6 +9,7 @@ public:
     void display();
     bool isEmpty();
     int numTools();
+    Tool* getFirstTool();
 private:
     int dueDate;
     std::vector<Tool*> rentedTools;

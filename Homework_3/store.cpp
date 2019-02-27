@@ -10,7 +10,10 @@ void Store::displayRevenue(){
 }
 
 void Store::ReturnTool(Tool* t){
-	tools.push_back(t);
+    //make sure it isn't null
+    if(t != NULL){
+        tools.push_back(t);
+    }
 }
 
 void Store::CleanUp(){

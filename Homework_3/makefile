@@ -9,7 +9,7 @@ test: tool.o simulation.o store.o customers.o rental.o timecounter.o rentalFacto
 tool.o: tool.cpp
 	g++ -c tool.cpp
 
-simulation.o: simulation.cpp timecounter.o customers.h customerFactory.h tool.h store.h
+simulation.o: simulation.cpp timecounter.o customers.h customerFactory.h tool.h store.h rentalFactory.o
 	g++ -c simulation.cpp
 
 store.o: store.cpp tool.h

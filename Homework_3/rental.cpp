@@ -28,3 +28,13 @@ bool Rental::isEmpty(){
 int Rental::numTools(){
     return rentedTools.size();
 }
+
+Tool* Rental::getFirstTool(){
+    if(isEmpty()){
+        return NULL;
+    }
+    Tool* ret;
+    ret = rentedTools.at(0);
+    rentedTools.erase(rentedTools.begin());
+    return ret;
+}
