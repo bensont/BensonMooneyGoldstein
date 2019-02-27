@@ -46,13 +46,14 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
         numDays = 0;
     }
     numDays += nightMin;
-    
     return new Rental(rentedtools,numDays+curDate);
 }
 
 void rentalFactory::returnTools(Store* store, Rental* rent){
     //break open the rental object
-    while(!rent->isEmpty()){
-        store->ReturnTool(rent->getFirstTool());
+    std::vector<Tool*> returnTools = rent->getTools();
+    std::cout << "here"<<std::to_string(returnTools.size()) <<std::endl;
+    for(int i = 0; i< returnTools.size() ;i++){
+        store->ReturnTool(returnTools.at(i));
     }
 }

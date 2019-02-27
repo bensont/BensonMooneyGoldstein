@@ -9,7 +9,7 @@ class Customer{
 public:
     ~Customer();
     void purchaseTools(Store* s, int cur_date);
-    std::vector<Rental*>* returnTools(int date);
+    std::vector<Rental*> returnTools(int date);
 	bool canRent();
     void display();
 protected:

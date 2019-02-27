@@ -29,12 +29,9 @@ int Rental::numTools(){
     return rentedTools.size();
 }
 
-Tool* Rental::getFirstTool(){
-    if(isEmpty()){
-        return NULL;
-    }
-    Tool* ret;
-    ret = rentedTools.at(0);
-    rentedTools.erase(rentedTools.begin());
+std::vector<Tool*> Rental::getTools(){
+    std::vector<Tool*> ret = rentedTools;
+    //clear the vector
+    rentedTools.clear();
     return ret;
 }

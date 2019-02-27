@@ -30,15 +30,18 @@ void DayCycle(Store* t,std::queue<Customer*>* c,int curDate){
 
 //The store (pointer), customer list (pointer for ease), and current date
 void NightCycle(Store* t, std::vector<Customer*>* c,int curDate){
-    std::vector<Rental*>* returnedTools;
+    std::vector<Rental*> returnedTools;
     for(int i = 0; i< c->size();i++){
         returnedTools = c->at(i)->returnTools(curDate);
+        //std::cout << "hit customer "<< std::to_string(i+1) << std::endl;
         //make sure it isn't null
-        if(returnedTools != NULL){
-            for(int x = 0; x <returnedTools->size();x++){
-                rentalFactory::returnTools(t,returnedTools->at(x));
+        
+        if(returnedTools.size() != 0){
+            for(int x = 0; x <returnedTools.size();x++){
+                rentalFactory::returnTools(t,returnedTools.at(x));
             }
         }
+        
         
     }
     
@@ -99,12 +102,13 @@ int main(){
             time.AdvanceDay(); //move to night of same day
         }
         else{
-            //NightCycle(&store,&customers,time.get_day());
+            NightCycle(&store,&customers,time.get_day());
             //since every customer needs to check every day, no queue
             time.AdvanceDay(); //move to day of following morning
         }
     }
 
+    
     //print out the customers stuff
     for(int i = 0; i<customers.size();i++){
         //std::cout << "?"<< std::endl;
@@ -115,7 +119,7 @@ int main(){
     std::cout << "Over " << std::to_string(time.get_day()) << " days earned ";
     store.displayRevenue();
     //Current number of store
-    //std::cout<<store.NumberOfTools()<<std::endl;
+    std::cout<<store.NumberOfTools()<<std::endl;
     store.PrintStore();
     //time.get_day();
 	//clean up step

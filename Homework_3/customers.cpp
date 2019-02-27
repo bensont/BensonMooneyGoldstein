@@ -36,22 +36,53 @@ void Customer::purchaseTools(Store* s, int cur_date) {
     }
   Rental* cur_rental = rentalFactory::rentTools(s,n_min_,n_max_,t_min_,numRentals, cur_date);
     //Make sure the rental is both not null and not empty (like business with only two available)
+    //std::cout << "failed here" << std::endl;
+    //make the null pointer an actual vector
+
     if(cur_rental != NULL && !cur_rental->isEmpty()){
+        //if(rentals_->size() == 0){
+        //std::cout << "failed here" << std::endl;
+        //}
         rentals_.push_back(cur_rental); //add too array
+        //std::cout << "failed here" << std::endl;
         num_rentals_ += cur_rental->numTools(); //increase number of tools
+        //std::cout << "failed here" << std::endl;
     }
 }
 
-std::vector<Rental*>* Customer::returnTools(int date) {
-  std::vector<Rental*>* returns;
+std::vector<Rental*> Customer::returnTools(int date) {
+    //bool didReturn = false;
+  std::vector<Rental*> returns;
   // check each rental in the customer's vector to see if it should be returned
+    //because we are deleting this must be done back to front
+    if(rentals_.size() == 0){
+        return returns;
+    }
+    int i = 0;
+    //for(int i = )
+        if(rentals_.at(i)->getDueDate() == date){
+            //rentals_.at(i)->display();
+            returns.push_back(rentals_.at(i)); //copy pointer
+            //std::cout << "Got the end" << std::endl;
+            //deal with extra book keeping
+            num_rentals_ -= rentals_[i]->numTools();
+        rentals_.erase(rentals_.begin()+i); //remove raw pointer from the vector
+    }
+
+    return returns;
+    
+  /*
   for (int i=0; i<rentals_.size(); i++) {
+      
     if (rentals_[i]->getDueDate() == date) {
+        
+        didReturn = true;
       returns->push_back(rentals_[i]); //copy pointer
+        //std::cout << "Got the end" << std::endl;
       rentals_.erase(rentals_.begin()+i); //remove raw pointer from the vector
     }
   }
-  return returns;
+   */
 }
 
 bool Customer::canRent() {
@@ -63,18 +94,19 @@ bool Customer::canRent() {
 }
 
 void Customer::display(){
+    //std::cout << name_ << " " << type_ << " " << std::endl;
     display_();
 }
 
 //protected version of display
 void Customer::display_(){
     std::cout << name_ << " " << type_ << " " << std::endl;
-    if(rentals_.size() != 0){
-        
-        for(int i=0;i<rentals_.size();i++){
+    if (rentals_.size() != 0){
+        for(int i=0;i < rentals_.size();i++){
             std::cout << "Rental " << std::to_string(i+1) << " Due on day " << rentals_.at(i)->getDueDate() << std::endl;
             rentals_.at(i)->display();
         }
+        
     }
 }
 
