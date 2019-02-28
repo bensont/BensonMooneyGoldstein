@@ -32,9 +32,6 @@ customerFactory.o : customerFactory.cpp customers.o
 
 logger.o: logger.cpp
 	g++ -c logger.cpp
-<<<<<<< HEAD
 
 rentalList.o: rentalList.cpp tool.h
 	g++ -c rentalList.cpp
-=======
->>>>>>> 783fc71c85dcf2bbee5d7fbec8883859ebd55261
