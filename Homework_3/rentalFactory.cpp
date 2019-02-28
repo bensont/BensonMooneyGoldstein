@@ -7,6 +7,7 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
     int NumTools = store->NumberOfTools();
     //early exit if no tools to rent, this should never be hit
     if(NumTools == 0){
+        Logger::print("Tried to rent from an empty store",info2);
         return NULL;
     }
     if(toolMax <= NumTools){
