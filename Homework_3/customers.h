@@ -4,6 +4,7 @@
 #include "rental.h"
 #include "rentalFactory.h"
 #include "store.h"
+#include "logger.h"
 
 class Customer{
 public:
