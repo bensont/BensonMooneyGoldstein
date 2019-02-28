@@ -46,7 +46,7 @@ Rental* rentalFactory::rentTools(Store* store,int nightMin,int nightMax,int tool
     
     //Generate for the log
     Logger::print("Rented " + std::to_string(rentedtools.size()) + " tools on day " + std::to_string(curDate) + " for " + std::to_string(numDays) + " days",info1);
-    return new Rental(rentedtools,numDays+curDate);
+    return new Rental(rentedtools,numDays+curDate,numDays);
 }
 
 void rentalFactory::returnTools(Store* store, Rental* rent){

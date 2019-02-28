@@ -33,3 +33,7 @@ void Tool::SetPrice(int x){
 void Tool::PrintTool(){
     Logger::print("Category: " + category + " Price: " + std::to_string(price),message);
 }
+
+std::string Tool::GetCategory(){
+    return category;
+}

@@ -40,10 +40,13 @@ void Customer::purchaseTools(Store* s, int cur_date) {
     if(cur_rental != NULL && !cur_rental->isEmpty()){
         rentals_.push_back(cur_rental); //add too array
         num_rentals_ += cur_rental->numTools(); //increase number of tools
+        
+        //Also add to the master list of rentals
+        
     }
 }
 
-std::vector<Rental*> Customer::returnTools(int date) {
+std::vector<Rental*> Customer::returnTools(RentalList* rlist, int date) {
     //bool didReturn = false;
   std::vector<Rental*> returns;
   // check each rental in the customer's vector to see if it should be returned
@@ -51,15 +54,16 @@ std::vector<Rental*> Customer::returnTools(int date) {
     if(rentals_.size() == 0){
         return returns;
     }
-    int i = 0;
-    //for(int i = )
+    for(int i = 0;i<rentals_.size();i++){
         //The inequality is to catch any errors, but I don't know where they come from
         if(rentals_.at(i)->getDueDate() <= date){
             //rentals_.at(i)->display();
             returns.push_back(rentals_.at(i)); //copy pointer
             //deal with extra book keeping
             num_rentals_ -= rentals_[i]->numTools();
+            rlist->addRentalLog(name_,rentals_.at(i));
         rentals_.erase(rentals_.begin()+i); //remove raw pointer from the vector
+        }
     }
     return returns;
 }

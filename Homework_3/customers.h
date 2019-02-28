@@ -5,12 +5,13 @@
 #include "rentalFactory.h"
 #include "store.h"
 #include "logger.h"
+#include "rentalList.h"
 
 class Customer{
 public:
     ~Customer();
     void purchaseTools(Store* s, int cur_date);
-    std::vector<Rental*> returnTools(int date);
+    std::vector<Rental*> returnTools(RentalList* rlist ,int date);
 	bool canRent();
     void display();
 protected:

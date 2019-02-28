@@ -7,6 +7,7 @@
 #include <iostream>
 #include <queue>
 #include <time.h>
+#include "rentalList.h"
 
 void BuildStore(Store* t,int prc,std::string cat){
 	for(int i = 0;i<4;i++){
@@ -29,10 +30,10 @@ void DayCycle(Store* t,std::queue<Customer*>* c,int curDate){
 }
 
 //The store (pointer), customer list (pointer for ease), and current date
-void NightCycle(Store* t, std::vector<Customer*>* c,int curDate){
+void NightCycle(Store* t, std::vector<Customer*>* c,RentalList* rlist,int curDate){
     std::vector<Rental*> returnedTools;
     for(int i = 0; i< c->size();i++){
-        returnedTools = c->at(i)->returnTools(curDate);
+        returnedTools = c->at(i)->returnTools(rlist,curDate);
         //std::cout << "hit customer "<< std::to_string(i+1) << std::endl;
         //make sure it isn't null
         
@@ -79,6 +80,9 @@ int main(){
         customers.push_back(CustomerFactory::createRandom("cust"+std::to_string(i+1)));
     }
 	
+    //Create a rentallist
+    RentalList rentalList;
+    
     //If logger is in debug mode also print this
     if(Logger::isDebug()){
         store.PrintStore();
@@ -102,14 +106,17 @@ int main(){
             time.AdvanceDay(); //move to night of same day
         }
         else{
-            NightCycle(&store,&customers,time.get_day());
+            NightCycle(&store,&customers,&rentalList,time.get_day());
             //since every customer needs to check every day, no queue
             time.AdvanceDay(); //move to day of following morning
         }
     }
 
     
-    //print out the customers stuff
+    Logger::print("Completed Rentals",message);
+    rentalList.displayLog();
+    
+    Logger::print("Outstanding Rentals",message);
     for(int i = 0; i<customers.size();i++){
         //std::cout << "?"<< std::endl;
         customers.at(i)->display();
@@ -118,7 +125,7 @@ int main(){
     //display money earned
     store.displayRevenue(time.get_day());
     //Current number of store
-    Logger::print("Final Store inventory:",message);
+    Logger::print("Final Store inventory of "+std::to_string(store.NumberOfTools())+" items",message);
     store.PrintStore();
     //time.get_day();
 	//clean up step
@@ -127,6 +134,7 @@ int main(){
 	store.CleanUp();
     //clean each customer up
     customers.clear();
+    //rental list is self cleaning
 
 	return 0;
 }
