@@ -1,12 +1,11 @@
 #include "store.h"
-#include <iostream>
 
 Store::Store(){
     totalRevenue_ = 0;
 }
 
-void Store::displayRevenue(){
-    std::cout << std::to_string(totalRevenue_) << " dollars "<< std::endl;
+void Store::displayRevenue(int day){
+    Logger::print("Over " + std::to_string(day) + " days earned " + std::to_string(totalRevenue_)+ " dollars",message);
 }
 
 void Store::ReturnTool(Tool* t){
@@ -43,13 +42,4 @@ void Store::PrintStore(){
 	for(std::vector<Tool*>::iterator i=tools.begin(); i!=tools.end(); ++i){
 		(*i)->PrintTool();
 	}
-}/*
-	for(std::vector<Tool*>::iterator i=tools.begin(); t=tools.end(); ++i){
-		std::cout << i->PrintTool() << std::endl;
-	}
-
-	for(auto i : tools){
-		std::cout << i->PrintTool << std::endl;
-	}
-
-	*/
+}

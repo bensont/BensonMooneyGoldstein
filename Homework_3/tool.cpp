@@ -18,6 +18,7 @@ Tool::~Tool(){
 }
 
 Tool* Tool::Create(int pc, std::string cat){
+    Logger::print("Made a tool named " + cat + " with price " + std::to_string(pc),info2);
 	return new Tool(pc,cat);
 }
 
@@ -30,5 +31,5 @@ void Tool::SetPrice(int x){
 }
 
 void Tool::PrintTool(){
-    std::cout << "Category: " << category << " Price: " << std::to_string(price) << std::endl;
+    Logger::print("Category: " + category + " Price: " + std::to_string(price),message);
 }

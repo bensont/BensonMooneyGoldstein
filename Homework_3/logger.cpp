@@ -18,3 +18,11 @@ void Logger::print(std::string text, MessageLevel level){
 void Logger::setMessageLevel(MessageLevel minlvl){
     minLevel_ = minlvl;
 }
+
+bool Logger::isDebug(){
+    if(minLevel_ == 0 || minLevel_ == debug){
+        return true;
+    }else{
+        return false;
+    }
+}

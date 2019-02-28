@@ -79,7 +79,7 @@ void Customer::display(){
 
 //protected version of display
 void Customer::display_(){
-    Logger::print(name_ + " " + type_,message)
+    Logger::print(name_ + " " + type_,message);
     if (rentals_.size() != 0){
         for(int i=0;i < rentals_.size();i++){
             Logger::print("Rental "+std::to_string(i+1)+ " Due on day"+std::to_string(rentals_.at(i)->getDueDate()),message);

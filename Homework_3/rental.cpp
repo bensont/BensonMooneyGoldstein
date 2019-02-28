@@ -30,6 +30,8 @@ int Rental::numTools(){
 }
 
 std::vector<Tool*> Rental::getTools(){
+    //This is also where we should log the record
+    
     std::vector<Tool*> ret = rentedTools;
     //clear the vector
     rentedTools.clear();

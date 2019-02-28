@@ -79,12 +79,12 @@ int main(){
         customers.push_back(CustomerFactory::createRandom("cust"+std::to_string(i+1)));
     }
 	
-    //testing the store
-	store.PrintStore();
-    //testing the customers
-    for(int i = 0; i<customers.size();i++){
-        //std::cout << "?"<< std::endl;
-        customers.at(i)->display();
+    //If logger is in debug mode also print this
+    if(Logger::isDebug()){
+        store.PrintStore();
+        for(int i = 0; i<customers.size();i++){
+            customers.at(i)->display();
+        }
     }
     
     //day night cycle
@@ -116,14 +116,12 @@ int main(){
     }
     
     //display money earned
-    std::cout << "Over " << std::to_string(time.get_day()) << " days earned ";
-    store.displayRevenue();
+    store.displayRevenue(time.get_day());
     //Current number of store
-    std::cout<<store.NumberOfTools()<<std::endl;
+    Logger::print("Final Store inventory:",message);
     store.PrintStore();
     //time.get_day();
 	//clean up step
-    //std::cout<<time.get_day()<<std::endl;
     
     //Need to make sure things are cleaned up
 	store.CleanUp();

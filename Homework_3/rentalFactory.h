@@ -1,6 +1,7 @@
 #pragma once
 #include "rental.h"
 #include "store.h"
+#include "logger.h"
 
 class rentalFactory{
 public:
