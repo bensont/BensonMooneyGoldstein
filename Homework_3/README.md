@@ -21,3 +21,7 @@ and rental time period. The simulation runs for 35 days and 34 nights.
 3. In terminal execute command './test' to execute simulations
 4. Enjoy
 ***
+#### Settings
+***
+The logger.cpp file contains a single constant, this is the default logging level. If you would like to reduce the number of statements printed change that value from '0' to 'message' (without the quotes)
+***
