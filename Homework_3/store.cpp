@@ -2,7 +2,7 @@
 #include <iostream>
 
 Store::Store(){
-
+    totalRevenue_ = 0;
 }
 
 void Store::displayRevenue(){
