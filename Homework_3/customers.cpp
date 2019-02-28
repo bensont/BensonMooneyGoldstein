@@ -53,14 +53,14 @@ std::vector<Rental*> Customer::returnTools(int date) {
     }
     int i = 0;
     //for(int i = )
-        if(rentals_.at(i)->getDueDate() == date){
+        //The inequality is to catch any errors, but I don't know where they come from
+        if(rentals_.at(i)->getDueDate() <= date){
             //rentals_.at(i)->display();
             returns.push_back(rentals_.at(i)); //copy pointer
             //deal with extra book keeping
             num_rentals_ -= rentals_[i]->numTools();
         rentals_.erase(rentals_.begin()+i); //remove raw pointer from the vector
     }
-
     return returns;
 }
 
@@ -82,7 +82,7 @@ void Customer::display_(){
     Logger::print(name_ + " " + type_,message);
     if (rentals_.size() != 0){
         for(int i=0;i < rentals_.size();i++){
-            Logger::print("Rental "+std::to_string(i+1)+ " Due on day"+std::to_string(rentals_.at(i)->getDueDate()),message);
+            Logger::print("Rental "+std::to_string(i+1)+ " due on day "+std::to_string(rentals_.at(i)->getDueDate()),message);
             rentals_.at(i)->display();
         }
         

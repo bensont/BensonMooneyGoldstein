@@ -1,6 +1,7 @@
 #pragma once
 #include "tool.h" 
 #include <vector>
+#include "logger.h"
 
 class Store{
 public:
@@ -10,7 +11,7 @@ public:
     void PrintStore();
     void CleanUp();
     int NumberOfTools();
-    void displayRevenue();
+    void displayRevenue(int day);
 private:
     int totalRevenue_;
 	std::vector<Tool*> tools;
